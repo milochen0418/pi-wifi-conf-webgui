@@ -8,7 +8,7 @@ server.listen(port);
 console.log('listen port = ' + port);
 
 app.get('/', function(req, res){
-	res.sendfile(__dirname + '/index.html');
+	res.sendFile(__dirname + '/index.html');
 });
 app.use('/public', express.static(__dirname + '/public'));
 
