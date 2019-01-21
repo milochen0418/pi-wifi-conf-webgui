@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Wifi Configuration with Socket.io and node.js</title>
+
+	<link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="public/all.css">
+	<script type="text/javascript" src="public/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+		<div id="contentWrap">
+			<div id="chatWrap" class="panel panel-default" >
+			  	<div class="panel-heading">Wifi Configuration</div>
+			  	<div class="panel-body">
+			  		<div class="row">
+			  			<div class="col-md-9">
+			  				<div id="chat"></div>
+						    <form id="send-message">
+						      <div class="input-group">
+						        <input type="text" class="form-control" placeholder="Type something..." id="message">
+						        <span class="input-group-btn">
+						          <button type="submit" class="btn btn-default">Setting</button>
+						        </span>
+						      </div>
+						    </form>
+						</div>
+						<div class="col-md-3">
+							 Another List
+							<div id="wifis"></div>
+						</div>
+					</div>
+			  	</div>
+			</div>
+			
+		</div>
+
+		<script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript">
+		$(function(){
+			var socket = io.connect();
+			var $frmMessage = $('#send-message');
+			$('#send-message').submit(function(e){
+
+				e.preventDefault();
+				socket.emit('send message', "ABDEFG");
+			});
+
+			socket.on('new message', function(data){
+				var msg = data.msg;
+				console.log('receive new message' + msg);
+			});
+			socket.on('lose connection', function(data){
+				var msg = data.msg;
+				console.log('lose connection ...');
+			});
+
+		});
+		</script>
+	</div>
+</body>
+</html>
