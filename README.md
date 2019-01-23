@@ -13,5 +13,5 @@ $ npm start
 
 ## reinstall
 ### Sometimes you need to clean modules, or you cannot run well in old module
-$ npm run clean
-$ npm install 
+$ npm run clean  
+$ npm install  
